@@ -8,7 +8,7 @@ namespace Disaheim
 {
     public abstract class Merchandise
     {
-        public string ItemId;
+        public string ItemId { get; set; }
 
         public override string ToString()
         {

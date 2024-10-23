@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UtilityLib;
 
 namespace Disaheim
 {
-    public class MerchandiseRepository : Merchandise
+    public class MerchandiseRepository
     {
         private List<Merchandise> merchandises = new List<Merchandise>();
 
@@ -16,13 +13,15 @@ namespace Disaheim
             merchandises.Add(merchandise);
         }
 
+
+        //Skal tjekke om det er en amulet eller book og returnere det. 
+        //Forventer ItemId: 13, Quality: low, Design: Capricorn men får null
         public Merchandise GetMerchandise(string itemId)
         {
-            foreach (var merchandise in merchandises)
+            foreach (Merchandise merchandise in merchandises)
             {
                 if (merchandise.ItemId == itemId)
                 {
-                    
                     return merchandise;
                 }
             }
@@ -35,7 +34,7 @@ namespace Disaheim
             double value = 0;
             foreach (Merchandise merchandise in merchandises)
             {
-                value = +utility.GetValueOfMerchandise(merchandise);
+                value += utility.GetValueOfMerchandise(merchandise);
             }
             return value;
         }
