@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Disaheim
+{
+    public abstract class Merchandise
+    {
+        public string ItemId;
+
+        public override string ToString()
+        {
+            //"ItemId: 100"
+            return $"ItemId: {ItemId}";
+        }
+    }
+}
