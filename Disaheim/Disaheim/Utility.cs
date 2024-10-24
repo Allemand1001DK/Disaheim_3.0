@@ -10,6 +10,14 @@ namespace UtilityLib
 {
     public class Utility
     {
+        public double LowQualityValue { get; set; } = 12.5;
+        public double MediumQualityValue { get; set; } = 20.0;
+        public double HighQualityValue { get; set; } = 27.5;
+        public double CourseHourValue { get; set; } = 875;
+
+
+
+
         //public double GetValueOfBook(Book book)
         //{
         //    return book.Price;
@@ -36,7 +44,7 @@ namespace UtilityLib
             {
                 hours++;
             }
-            return hours * 875;
+            return hours * CourseHourValue;
         }
 
         public double GetValueOfMerchandise(Merchandise merchandise)
@@ -45,9 +53,9 @@ namespace UtilityLib
             {
                 return amulet.Quality switch
                 {
-                    Level.low => 12.5,
-                    Level.medium => 20.0,
-                    Level.high => 27.5,
+                    Level.low => LowQualityValue,
+                    Level.medium => MediumQualityValue,
+                    Level.high => HighQualityValue,
                 };
             }else if (merchandise is Book book)
             {
