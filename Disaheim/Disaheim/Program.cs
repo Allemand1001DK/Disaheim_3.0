@@ -51,6 +51,10 @@
             {
                 File.Delete("TestFile02.txt");
             }
+
+            vr1.Save();
+            vr2.Load();
+            int noOfElements = vr1.Count();
         }
     }
 }

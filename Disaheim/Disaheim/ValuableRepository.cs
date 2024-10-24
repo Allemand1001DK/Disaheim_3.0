@@ -54,8 +54,8 @@ namespace Disaheim
 
         public void Save()
         {
-            using (StreamWriter writer = new StreamWriter("ValuableRepository.txt"))
-            {
+            StreamWriter writer = new StreamWriter("ValuableRepository.txt");
+            
                 foreach (IValuable valuable in valuables)
                 {
                     if (valuable is Book book)
@@ -71,15 +71,15 @@ namespace Disaheim
                         writer.WriteLine($"COURSE;{course.Name};{course.DurationInMinutes}");
                     }
                 }
-            }
+            writer.Close();
         }
 
         public void Save(string fileName)
         {
             try
             {
-                using (StreamWriter writer = new StreamWriter(fileName, false))
-                {
+                StreamWriter writer = new StreamWriter(fileName, false);
+                
                     foreach (IValuable valuable in valuables)
                     {
                         if (valuable is Book book)
@@ -95,7 +95,7 @@ namespace Disaheim
                             writer.WriteLine($"COURSE;{course.Name};{course.DurationInMinutes}");
                         }
                     }
-                }
+                writer.Close();
             }
             catch (Exception e)
             {
@@ -107,38 +107,38 @@ namespace Disaheim
 
         public void Load()
         {
-            using (StreamReader reader = new StreamReader("ValuableRepository.txt"))
+            StreamReader reader = new StreamReader("ValuableRepository.txt");
+
+            string? item;
+            while ((item = reader.ReadLine()) != null)
             {
-                string item = reader.ReadLine();
+                Console.WriteLine($"Loading item: {item}"); // Debug print
+                string[] itemArray = item.Split(';');
 
-
-                while ((item = reader.ReadLine()) != null)
+                switch (itemArray[0])
                 {
-                    string[] itemArray = item.Split(';');
-
-                    switch (itemArray[0])
-                    {
-                        case "BOG":
-                            Book book = new Book(itemArray[1], itemArray[2], double.Parse(itemArray[3]));
-                            AddValuable(book);
-                            break;
-                        case "AMULET":
-                            Amulet amulet = new Amulet(itemArray[1], (Level)Enum.Parse(typeof(Level), itemArray[3]), itemArray[2]);
-                            AddValuable(amulet);
-                            break;
-                        case "COURSE":
-                            Course course = new Course(itemArray[1], int.Parse(itemArray[2]));
-                            AddValuable(course);
-                            break;
-                    }
+                    case "BOG":
+                        Book book = new Book(itemArray[1], itemArray[2], double.Parse(itemArray[3]));
+                        AddValuable(book);
+                        break;
+                    case "AMULET":
+                        Amulet amulet = new Amulet(itemArray[1], (Level)Enum.Parse(typeof(Level), itemArray[3]), itemArray[2]);
+                        AddValuable(amulet);
+                        break;
+                    case "COURSE":
+                        Course course = new Course(itemArray[1], int.Parse(itemArray[2]));
+                        AddValuable(course);
+                        break;
                 }
             }
+            reader.Close();
+
         }
 
         public void Load(string filename)
         {
-            using (StreamReader reader = new StreamReader("ValuableRepository.txt"))
-            {
+            StreamReader reader = new StreamReader(filename);
+            
                 string? item;
                 while ((item = reader.ReadLine()) != null)
                 {
@@ -161,7 +161,7 @@ namespace Disaheim
                             break;
                     }
                 }
-            }
+            reader.Close();
         }
     }
 }
