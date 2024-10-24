@@ -8,6 +8,7 @@ namespace Disaheim
 {
     public class Book : Merchandise
     {
+        //
         public string Title { get; set; }
         public double Price { get; set; }
 
