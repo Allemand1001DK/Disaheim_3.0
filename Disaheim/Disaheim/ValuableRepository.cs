@@ -52,29 +52,29 @@ namespace Disaheim
             return valuables.Count;
         }
 
-        public void Save()
-        {
-            StreamWriter writer = new StreamWriter("ValuableRepository.txt");
+        //public void Save()
+        //{
+        //    StreamWriter writer = new StreamWriter("ValuableRepository.txt");
             
-                foreach (IValuable valuable in valuables)
-                {
-                    if (valuable is Book book)
-                    {
-                        writer.WriteLine($"BOG;{book.ItemId};{book.Title};{book.Price}");
-                    }
-                    else if (valuable is Amulet amulet)
-                    {
-                        writer.WriteLine($"AMULET;{amulet.ItemId};{amulet.Design};{amulet.Quality}");
-                    }
-                    else if (valuable is Course course)
-                    {
-                        writer.WriteLine($"COURSE;{course.Name};{course.DurationInMinutes}");
-                    }
-                }
-            writer.Close();
-        }
+        //        foreach (IValuable valuable in valuables)
+        //        {
+        //            if (valuable is Book book)
+        //            {
+        //                writer.WriteLine($"BOG;{book.ItemId};{book.Title};{book.Price}");
+        //            }
+        //            else if (valuable is Amulet amulet)
+        //            {
+        //                writer.WriteLine($"AMULET;{amulet.ItemId};{amulet.Design};{amulet.Quality}");
+        //            }
+        //            else if (valuable is Course course)
+        //            {
+        //                writer.WriteLine($"COURSE;{course.Name};{course.DurationInMinutes}");
+        //            }
+        //        }
+        //    writer.Close();
+        //}
 
-        public void Save(string fileName)
+        public void Save(string fileName = "ValuableRepository.txt")
         {
             try
             {
@@ -105,37 +105,37 @@ namespace Disaheim
             
         }
 
-        public void Load()
-        {
-            StreamReader reader = new StreamReader("ValuableRepository.txt");
+        //public void Load()
+        //{
+        //    StreamReader reader = new StreamReader("ValuableRepository.txt");
 
-            string? item;
-            while ((item = reader.ReadLine()) != null)
-            {
-                Console.WriteLine($"Loading item: {item}"); // Debug print
-                string[] itemArray = item.Split(';');
+        //    string? item;
+        //    while ((item = reader.ReadLine()) != null)
+        //    {
+        //        Console.WriteLine($"Loading item: {item}"); // Debug print
+        //        string[] itemArray = item.Split(';');
 
-                switch (itemArray[0])
-                {
-                    case "BOG":
-                        Book book = new Book(itemArray[1], itemArray[2], double.Parse(itemArray[3]));
-                        AddValuable(book);
-                        break;
-                    case "AMULET":
-                        Amulet amulet = new Amulet(itemArray[1], (Level)Enum.Parse(typeof(Level), itemArray[3]), itemArray[2]);
-                        AddValuable(amulet);
-                        break;
-                    case "COURSE":
-                        Course course = new Course(itemArray[1], int.Parse(itemArray[2]));
-                        AddValuable(course);
-                        break;
-                }
-            }
-            reader.Close();
+        //        switch (itemArray[0])
+        //        {
+        //            case "BOG":
+        //                Book book = new Book(itemArray[1], itemArray[2], double.Parse(itemArray[3]));
+        //                AddValuable(book);
+        //                break;
+        //            case "AMULET":
+        //                Amulet amulet = new Amulet(itemArray[1], (Level)Enum.Parse(typeof(Level), itemArray[3]), itemArray[2]);
+        //                AddValuable(amulet);
+        //                break;
+        //            case "COURSE":
+        //                Course course = new Course(itemArray[1], int.Parse(itemArray[2]));
+        //                AddValuable(course);
+        //                break;
+        //        }
+        //    }
+        //    reader.Close();
 
-        }
+        //}
 
-        public void Load(string filename)
+        public void Load(string filename = "ValuableRepository.txt")
         {
             StreamReader reader = new StreamReader(filename);
             
