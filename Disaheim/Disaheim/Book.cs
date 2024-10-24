@@ -8,7 +8,7 @@ namespace Disaheim
 {
     public class Book : Merchandise
     {
-        //
+        
         public string Title { get; set; }
         public double Price { get; set; }
 
@@ -27,6 +27,10 @@ namespace Disaheim
         public Book(string itemId) : this(itemId, null, 0)
         {
 
+        }
+        public override double GetValue()
+        {
+            return Price;
         }
 
         public override string ToString()

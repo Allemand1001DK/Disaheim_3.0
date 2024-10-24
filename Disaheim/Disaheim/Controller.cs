@@ -8,6 +8,7 @@ namespace Disaheim
 {
     public class Controller
     {
+        public ValuableRepository ValuebleRepo;
         public List<Book> Books = new List<Book>();
         public List<Amulet> Amulets = new List<Amulet>();
         public List<Course> Courses = new List<Course>();
@@ -25,6 +26,11 @@ namespace Disaheim
         public void AddToList(Course course)
         {
             Courses.Add(course);
+        }
+
+        public void AddToList(IValuable valuable)
+        {
+            ValuebleRepo.AddValuable(valuable);
         }
     }
 }
