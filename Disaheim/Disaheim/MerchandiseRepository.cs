@@ -16,7 +16,7 @@ namespace Disaheim
 
         //Skal tjekke om det er en amulet eller book og returnere det. 
         //Forventer ItemId: 13, Quality: low, Design: Capricorn men får null
-        public Merchandise GetMerchandise(string itemId)
+        public Merchandise? GetMerchandise(string itemId)
         {
             foreach (Merchandise merchandise in merchandises)
             {
